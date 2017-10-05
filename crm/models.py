@@ -7,10 +7,11 @@ class Email(models.Model):
         verbose_name = 'Email'
         verbose_name_plural = 'Emails'
 
+    client_email = models.ForeignKey('Client', on_delete=models.CASCADE)
     email = models.EmailField(null=True, blank=True, verbose_name='Email')
 
     def __str__(self):
-        return '%s' % self.email
+        return '%s' % self.client_email
 
 
 class Phone(models.Model):
@@ -18,10 +19,11 @@ class Phone(models.Model):
         verbose_name = 'Phone'
         verbose_name_plural = 'Phones'
 
+    client_phone = models.ForeignKey('Client', on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=32, null=True, blank=True, verbose_name='Phone')
 
     def __str__(self):
-        return '%s' % self.phone_number
+        return '%s %s' % (self.client_phone, self.phone_number)
 
 
 class Client(models.Model):
@@ -34,11 +36,10 @@ class Client(models.Model):
     last_name = models.CharField(max_length=32, null=False, blank=False, verbose_name='Last name')
     middle_name = models.CharField(max_length=32, null=False, blank=False, verbose_name='Middle name')
     client_city = models.CharField(max_length=32, verbose_name='City')
-    client_phone = models.ForeignKey('Phone', on_delete=models.CASCADE)
-    client_email = models.ForeignKey('Email', on_delete=models.CASCADE)
+
 
     def __str__(self):
-        return '%s, %s %s, %s, %s' % (self.first_name, self.last_name, self.client_city, self.client_email.email, self.client_phone.phone_number)
+        return '%s %s' % (self.first_name, self.last_name)
 
 
 # class Tour(models.Model):
