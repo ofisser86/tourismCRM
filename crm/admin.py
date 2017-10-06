@@ -6,12 +6,17 @@ class PhoneInline(admin.TabularInline):
     model = Phone
     extra = 0
 
+
+class EmailInline(admin.TabularInline):
+    model = Email
+    extra = 0
+
 class ClientAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Client._meta.fields]
     # phone = Phone.objects.filter()
     # print(phone)
     # list_display = ('first_name', 'last_name', 'phone')
-    inlines = [PhoneInline]
+    inlines = [PhoneInline, EmailInline]
 
     class Meta(object):
         model = Client
