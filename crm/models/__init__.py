@@ -1,4 +1,4 @@
-from .client import Client, Email, Phone, PlusOne
+from .client import Client, Email, Phone
 from .order import Order
-from .tour import Tour, TourSeason, Hotel, City, Country
+from .tour import Tour, TourSeason, Hotel, City, Country, PlusOne
 

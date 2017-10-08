@@ -26,15 +26,6 @@ class Phone(models.Model):
         return '%s %s' % (self.client_phone, self.phone_number)
 
 
-class PlusOne(models.Model):
-    first_name = models.CharField(max_length=32, null=False, blank=False, verbose_name='First name' )
-    last_name = models.CharField(max_length=32, null=False, blank=False, verbose_name='Last name' )
-    birthday = models.DateField(blank=True, null=True, verbose_name='Date of birth')
-    document_scan = models.ImageField(blank=True, null=True)
-    client_plus_one = models.ForeignKey('Client')
-    plus_one_in_tour = models.ForeignKey('Tour')
-
-
 class Client(models.Model):
 
     class Meta(object):
@@ -46,8 +37,7 @@ class Client(models.Model):
     middle_name = models.CharField(max_length=32, null=True, blank=True, verbose_name='Middle name')
     birthday = models.DateField(blank=True, null=True, verbose_name='Date of birth')
     document_scan = models.ImageField(blank=True, null=True)
-    client_city = models.CharField(max_length=32, verbose_name='City')
-    client_tour = models.ForeignKey('Tour')
+    client_tour = models.ForeignKey('Tour', default=None)
 
     def __str__(self):
         return '%s %s' % (self.first_name, self.last_name)

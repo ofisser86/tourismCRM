@@ -14,11 +14,11 @@ class Order(models.Model):
         ('FP', 'Fully Paid'),
     )
     status = models.CharField(max_length=1, choices=ORDER_STATUS)
-    order_client = models.ForeignKey(Client)
-    order_tour = models.ForeignKey(Tour)
+    order_client = models.ForeignKey(Client, default=None)
+    order_tour = models.ForeignKey(Tour, default=None)
     # Count in view Total = tour_price * season_coefficient * count of tours
-    order_total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    tour_count = models.IntegerField(default=1)
     is_active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
-    tour_count = models.IntegerField(default=1)
+    order_total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
