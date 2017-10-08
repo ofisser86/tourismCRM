@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import  Client, Email, Phone
+from .models import *
 # Register your models here.
+
 
 class PhoneInline(admin.TabularInline):
     model = Phone
@@ -22,3 +23,5 @@ class ClientAdmin(admin.ModelAdmin):
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Email)
 admin.site.register(Phone)
+admin.site.register(Tour)
+admin.site.register(Order)
